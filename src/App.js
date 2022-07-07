@@ -8,8 +8,8 @@ function App() {
     <div className="outer">
       <TilesContainer setImgSrc={setImgSrc} />
       {imgSrc.length > 0 ? (
-        <div>
-          <img src={imgSrc} alt="cute animal" />
+        <div className="imgWrap--large">
+          <img className="img--large" src={imgSrc} alt="cute animal" />
         </div>
       ) : null}
     </div>
