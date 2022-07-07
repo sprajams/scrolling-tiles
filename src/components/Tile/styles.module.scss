@@ -1,12 +1,16 @@
-.outer {
+.imageWrap {
   width: 200px;
   height: 112.5px;
   overflow: hidden;
   border-radius: 8px;
+  cursor: pointer;
   @media (min-width: 768px) {
     width: 325px;
     height: 183px;
   }
+}
+.imageWrap:hover {
+  opacity: 50%;
 }
 .image {
   width: 100%;

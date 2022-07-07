@@ -1,5 +1,5 @@
 import Tile from "../Tile";
-
+import styles from "./styles.module.scss";
 const Puppies = [
   "https://frontendeval.com/images/puppy-1.jpeg",
   "https://frontendeval.com/images/puppy-2.jpeg",
@@ -30,14 +30,17 @@ const Kittens = [
   "https://frontendeval.com/images/kitten-12.jpeg",
 ];
 
-function TilesContainer() {
+function TilesContainer({ setImgSrc }) {
+  const onClick = (e) => {
+    setImgSrc(e.target.src);
+  };
   return (
     <div>
       <div>
-        <ul>
+        <ul className={styles.animalList}>
           {Puppies.map((x, i) => {
             return (
-              <li key={"dog-" + i}>
+              <li key={"dog-" + i} onClick={onClick}>
                 <Tile src={x} />
               </li>
             );
@@ -45,10 +48,10 @@ function TilesContainer() {
         </ul>
       </div>
       <div>
-        <ul>
+        <ul className={styles.animalList}>
           {Kittens.map((x, i) => {
             return (
-              <li key={`kitten-` + i}>
+              <li key={`kitten-` + i} onClick={onClick}>
                 <Tile src={x} />
               </li>
             );
