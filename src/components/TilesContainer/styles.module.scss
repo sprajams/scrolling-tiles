@@ -1,7 +1,18 @@
+.animalWrap {
+  border: 1px solid red;
+  margin: auto;
+  display: flex;
+  width: 100vw;
+  overflow: hidden;
+}
+
 .animalList {
   list-style: none;
   display: flex;
-  //   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   padding: 0;
+  border: 2px solid green;
+  will-change: transform;
+  width: 100%;
 }
