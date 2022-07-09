@@ -34,7 +34,6 @@ const KITTENS = [
 
 function App() {
   const [imgSrc, setImgSrc] = useState("");
-  const [baseSpeed, setBaseSpeed] = useState(3);
   const [isPaused, setIsPaused] = useState(false);
   const onClick = () => {
     setIsPaused(!isPaused);
@@ -48,12 +47,12 @@ function App() {
         <ScrollingTiles
           setImgSrc={setImgSrc}
           petImgArr={PUPPIES}
-          baseSpeed={isPaused ? 0 : baseSpeed}
+          baseSpeed={isPaused ? 0 : 2.5}
         />
         <ScrollingTiles
           setImgSrc={setImgSrc}
           petImgArr={KITTENS}
-          baseSpeed={isPaused ? 0 : baseSpeed + 1}
+          baseSpeed={isPaused ? 0 : 3}
         />
       </div>
       {imgSrc.length > 0 ? (

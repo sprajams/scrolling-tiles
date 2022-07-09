@@ -10,21 +10,34 @@ function ScrollingTiles({ setImgSrc, petImgArr, baseSpeed }) {
   };
 
   const [xVal, setXVal] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const requestRef = useRef(null);
-  const widthRef = useRef(null);
+  const listRef = useRef(null);
 
   const [listWidth, setListWidth] = useState(0);
 
+  // mouse entering row of pets should slow the speed down
+  const onMouseEnter = () => {
+    setIsHovered(true);
+  };
+  const onMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   //setXVal will only change if listWidth or baseSpeed is changed
   const animate = useCallback(() => {
+    // when user hovers onto the rows, set multilier to slow down speed
+    const slowMultiplier = isHovered ? 0.25 : 1;
     // adjust xVal every animation frame, % listWidth helps reset xVal back to 0
-    setXVal((curr) => (listWidth > 0 ? (curr + 1 * baseSpeed) % listWidth : 0));
+    setXVal((curr) =>
+      listWidth > 0 ? (curr + 1 * baseSpeed * slowMultiplier) % listWidth : 0
+    );
     requestRef.current = requestAnimationFrame(animate);
-  }, [listWidth, baseSpeed]);
+  }, [listWidth, baseSpeed, isHovered]);
 
   useEffect(() => {
     // get width of 1 list of animals
-    const width = widthRef.current ? widthRef.current.offsetWidth : 0;
+    const width = listRef.current ? listRef.current.offsetWidth : 0;
     setListWidth(width);
     requestRef.current = requestAnimationFrame(animate);
     return () => {
@@ -34,11 +47,11 @@ function ScrollingTiles({ setImgSrc, petImgArr, baseSpeed }) {
   }, [animate]);
 
   return (
-    <div>
+    <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <div className={styles.animalWrap}>
         <ul
           className={styles.animalList}
-          ref={widthRef}
+          ref={listRef}
           style={{
             transform: `translate(${-xVal}px)`,
           }}
