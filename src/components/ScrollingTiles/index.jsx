@@ -16,7 +16,7 @@ function ScrollingTiles({ setImgSrc, petImgArr, baseSpeed }) {
 
   const [listWidth, setListWidth] = useState(0);
 
-  // mouse entering row of pets should slow the speed down
+  // keep track of if mouse is in row of pets or not
   const onMouseEnter = () => {
     setIsHovered(true);
   };
@@ -58,11 +58,7 @@ function ScrollingTiles({ setImgSrc, petImgArr, baseSpeed }) {
         >
           {petImgArr.map((x, i) => {
             return (
-              <li
-                key={"dog-" + i}
-                onClick={onClick}
-                className={styles.animalListItem}
-              >
+              <li key={"dog-" + i} onClick={onClick}>
                 <Tile src={x} />
               </li>
             );

@@ -44,17 +44,21 @@ function App() {
         <button onClick={onClick} className="btn">
           {isPaused ? `play` : `paws`}
         </button>
+        {/* 1st row of pets, pass in your image array srcs, and how fast you want it to scroll */}
         <ScrollingTiles
           setImgSrc={setImgSrc}
           petImgArr={PUPPIES}
           baseSpeed={isPaused ? 0 : 2.5}
         />
+        {/* 2nd row of pets */}
         <ScrollingTiles
           setImgSrc={setImgSrc}
           petImgArr={KITTENS}
           baseSpeed={isPaused ? 0 : 3}
         />
       </div>
+
+      {/* larger image displayed when user clicks a scrolling tile */}
       {imgSrc.length > 0 ? (
         <div className="imgWrap--large">
           <img className="img--large" src={imgSrc} alt="cute animal" />
